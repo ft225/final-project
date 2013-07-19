@@ -7,7 +7,7 @@
     <meta name="description" content="Final-project : Matteo Pisani" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>Sant Ambrogio armchair code</title>
+    <title>Toro armchair code</title>
   </head>
 
   <body>
@@ -19,7 +19,7 @@
           <h1 id="project_title">CG Final-project</h1>
           <h1 id="project_tagline">Matteo Pisani &nbsp 281744</h1>
 
-  <section id="menu">
+ <section id="menu">
         <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#base-Quadra-Table'"><font size="2.5"> Base Quadra Table</font></button>
 
         <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#lamp'"><font size="2.5"> Imbuto Lamp</font></button>
@@ -35,11 +35,11 @@
 <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="dominioni" class="anchor" href="#dominioni"><span class="octicon octicon-link"></span></a>ISant Ambrogio armchair javascript code</h1>
+<a name="dominioni" class="anchor" href="#dominioni"><span class="octicon octicon-link"></span></a>Toro armchair javascript code</h1>
 <div class="row-fluid">
 <font size ="4">
   <pre>
- function generateKnot(controlPoints){
+  function generateKnot(controlPoints){
   lun = controlPoints.length + 2 + 1;
   var nodeSeq = []
   nodeSeq[0] = 0;
@@ -62,82 +62,80 @@ function rgb01(r, g, b){
 }
 
 var domain = INTERVALS(1)(50)
-var dom2d = DOMAIN([[0,1],[0,1]])([50,50]);
-var domainRot = DOMAIN([[0,1],[0,2*PI]])([50,50]);
+var dom2d = DOMAIN([[0,1],[0,1]])([60,60]);
+var domainRot = DOMAIN([[0,1],[0,PI]])([50,50]);
 
-//bracciolo
-var points11 = [[0,0,0],[0,0,7],[0,0,7],[0,5,7],[0,5,7],[0,5,12],[0,5,12],[0,8,12],[0,8,12],[0,8,0],[0,8,0],[0,0,0]]
+var points11 = [[0,0,0],[1.5,0,0],[1.5,0,0],[2,3.5,0],[5,4,0],[8,3.5,0],[8.5,0,0],[8.5,0,0],[10,0,0],[10,0,0],[10,-1,0],[8.5,-4,0],[5,-5.5,0],[1.5,-4,0],[0,-1,0],[0,0,0]]
 var knots11 = generateKnot(points11)
 var nubs11 = NUBS(S0)(2)(knots11)(points11);
 var curve11 = MAP(nubs11)(domain);
 
-var points12 = [[1,0,0],[1,0,7],[1,0,7],[1,5,7],[1,5,7],[1,5,12],[1,5,12],[1,8,12],[1,8,12],[1,8,0],[1,8,0],[1,0,0]]
+var points12 = [[0,0,3],[1.5,0,3],[1.5,0,3],[2,3.5,3],[5,4,3],[8,3.5,3],[8.5,0,3],[8.5,0,3],[10,0,3],[10,0,3],[10,-1,3],[8.5,-4,3],[5,-5.5,3],[1.5,-4,3],[0,-1,3],[0,0,3]]
 var knots12 = generateKnot(points12)
 var nubs12 = NUBS(S0)(2)(knots12)(points12);
 var curve12 = MAP(nubs12)(domain);
 
-var points13 = [[0.5,-0.5,0],[0.5,-0.5,7.5],[0.5,-0.5,7.5],[0.5,4.5,7.5],[0.5,4.5,7.5],[0.5,4,12],[0.5,4,12],[0.5,8,12],[0.5,8,12],[0.5,8,0],[0.5,8,0],[0.5,-0.5,0]]
+var points13 = [[0,0,1.5],[1.5,0,1.5],[1.5,0,1.5],[2,3.5,1,5],[5,4,1.5],[8,3.5,1.5],[8.5,0,1.5],[8.5,0,1.5],[10,0,1.5],[10,0,1.5],[10,-1,1.5],[9,-4.5,1.5],[5,-6,1.5],[1,-4.5,1.5],[0,-1,1.5],[0,0,1.5]]
 var knots13 = generateKnot(points13)
 var nubs13 = NUBS(S0)(2)(knots13)(points13);
 var curve13 = MAP(nubs13)(domain);
 
-var sur11 = BEZIER(S1)([nubs11,[0,6,6]])
-var surface11 = MAP(sur11)(dom2d)
-
 var sur12 = BEZIER(S1)([nubs11,nubs13,nubs12])
 var surface12 = MAP(sur12)(dom2d)
 
-var sur13 = BEZIER(S1)([nubs12,[1,6,6]])
-var surface13 = MAP(sur13)(dom2d)
+var sur11 = BEZIER(S1)([nubs11,[5,0,0]])
+var surface11 = MAP(sur11)(dom2d)
 
-var bracciolo= STRUCT([surface11,surface12,surface13])
+var sur22 = BEZIER(S1)([nubs12,[5,0,3]])
+var surface22 = MAP(sur22)(dom2d)
 
-//cuscino
+var pillowAnt = STRUCT([surface11,surface12,surface22])
 
-var pointcusc1 = [[0,0,0],[0,2.5,-0.4],[0,5,0],[0,5,0],[0,5.2,0.75],[0,5,1.5],[0,5,1.5],[0,2.5,1.9],[0,0,1.5],[0,0,1.5],[0,-0.2,0.75],[0,0,0]]
-var knotcusc1 = generateKnot(pointcusc1)
-var nubscusc1 = NUBS(S0)(2)(knotcusc1)(pointcusc1);
-var curvecusc1 = MAP(nubscusc1)(domain);
+//schienale
 
-var pointcusc2 = [[7,0,0],[7,2.5,-0.4],[7,5,0],[7,5,0],[7,5.2,0.75],[7,5,1.5],[7,5,1.5],[7,2.5,1.9],[7,0,1.5],[7,0,1.5],[7,-0.2,0.75],[7,0,0]]
-var knotcusc2 = generateKnot(pointcusc2)
-var nubscusc2 = NUBS(S0)(2)(knotcusc2)(pointcusc2);
-var curvecusc2 = MAP(nubscusc2)(domain);
-
-var surcusc1 = BEZIER(S1)([nubscusc1,nubscusc2])
-var surfacecusc1 = MAP(surcusc1)(dom2d)
-
-var surcusc2 = BEZIER(S1)([nubscusc2,[7,2.5,0.75]])
-var surfacecusc2 = MAP(surcusc2)(dom2d)
-
-var surcusc3 = BEZIER(S1)([nubscusc1,[0,2.5,0.75]])
-var surfacecusc3 = MAP(surcusc3)(dom2d)
-
-var cuscino = S([1])([0.97])(STRUCT([surfacecusc1,surfacecusc2,surfacecusc3]))
-
-// schienale
-
-var points1 = [[0,0,0],[0,0,4.5],[0,0,4.5],[0,2,11],[0,2,11],[0,3,11],[0,3,11],[0,3,0],[0,3,0],[0,0,0]]
+var points1 = [[3.5,0,2],[5,0,2],[5,0,2],[5,0,5.5],[5,0,5.5],[6,0,5.5],[5,0,7],[3.5,0,6],[3.5,0,2]]
 var knots1 = generateKnot(points1)
-var nubss1 = NUBS(S0)(2)(knots1)(points1);
-var curves1 = MAP(nubss1)(domain);
+var nubs1 = NUBS(S0)(2)(knots1)(points1);
+var curve1 = MAP(nubs1)(domain);
 
-var points2 = [[7,0,0],[7,0,4.5],[7,0,4.5],[7,2,11],[7,2,11],[7,3,11],[7,3,11],[7,3,0],[7,3,0],[7,0,0]]
-var knots2 = generateKnot(points2)
-var nubss2 = NUBS(S0)(2)(knots2)(points2);
-var curves2 = MAP(nubss2)(domain);
+var sur1 = BEZIER(S1)([nubs1,[4.2,0,5.5]])
+var surface1 = MAP(sur1)(dom2d)
 
-var surs12= BEZIER(S1)([nubss1,nubss2])
-var surfaces12 = MAP(surs12)(dom2d)
 
-var baseInf = CUBOID([7,5,3.4])
-var baseSup = CUBOID([7,1,0.98])
-var base = COLOR([0,0,0])(S([0,1])([0.6,0.6])(EXTRUDE([0.2])(DISK()())))
-var basi =STRUCT([T([0,1,2])([1,1,-0.2])(base),T([0,1,2])([1,7,-0.2])(base),T([0,1,2])([8,7,-0.2])(base),T([0,1,2])([8,1,-0.2])(base)])
-var poltrona = S([2])([0.8])(COLOR(rgb01(175,89,67))(STRUCT([bracciolo,T([0])([8])(bracciolo),T([0,2])([1,3.5])(cuscino),T([0])([1])(baseInf),T([0,1,2])([1,7,11.02])(baseSup),T([0,1])([1,5])(surfaces12)])))
+var mapping = ROTATIONAL_SURFACE(nubs1)
+var schien= MAP(mapping)(domainRot)
 
-var model = STRUCT([poltrona,basi])
-DRAW(model)
+var pointc1 = [[0,0,0],[0,1,1.5],[0,0,3],[0,-1,2.5],[0,0,1.5],[0,-0.2,0],[0,0,0]]
+var knotsc1 = generateKnot(pointc1)
+var nubsc1 = NUBS(S0)(2)(knotsc1)(pointc1);
+var curvec1 = MAP(nubsc1)(domain);
+
+var pointc2 = [[2,0,0],[2,1,1.5],[2,0,3],[2,-1,2.5],[2,0,1.5],[2,-0.2,0],[2,0,0]]
+var knotsc2 = generateKnot(pointc2)
+var nubsc2 = NUBS(S0)(2)(knotsc2)(pointc2);
+var curvec2 = MAP(nubsc2)(domain);
+
+var surc12 = BEZIER(S1)([nubsc1,nubsc2])
+var surfacec12 = MAP(surc12)(dom2d)
+
+var surc1 = BEZIER(S1)([nubsc1,[0,0,1.5]])
+var surfacec1 = MAP(surc1)(dom2d)
+
+var surc2 = BEZIER(S1)([nubsc2,[2,0,1.5]])
+var surfacec2 = MAP(surc2)(dom2d)
+
+var poggiaTesta = S([0,2])([2,1.5])(STRUCT([surfacec1,surfacec12,surfacec2]))
+
+
+var bottone =S([0,1,2])([0.2,0.2,0.2])(STRUCT([EXTRUDE([0.3])(DISK()()),S([0,1])([0.2,0.2])(EXTRUDE([1])(DISK()()))]))
+var bottoni = STRUCT([T([0,2])([0.2,5])(R([1,2])(PI/2)(bottone)),T([0,2])([10,5])(R([1,2])(PI/2)(bottone)),T([0,1,2])([7,5.3,7])(R([0,2])([PI/2])(bottone)),T([0,1,2])([3,5.3,7])(R([0,2])([-PI/2])(bottone))])
+
+var base = S([0,1])([5,5])(COLOR(rgb01(0,0,0))(EXTRUDE([0.3])(DISK()())))
+
+var model = COLOR(rgb01(140,72,50))(STRUCT([T([0,1,2])([3,5.5,2.2])(poggiaTesta),pillowAnt,T([0,2])([5,-2])(schien),T([0,2])([5,-2])(surface1),T([0,2])([5,-2])(R([0,1])(PI)(surface1))]))
+var model_complete = STRUCT([S([2])([1.2])(model),T([0,2])([5,-0.3])(base),bottoni])
+
+DRAW(model_complete)
   </pre>
 </font>
 </div>
