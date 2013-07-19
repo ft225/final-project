@@ -7,7 +7,7 @@
     <meta name="description" content="Final-project : Matteo Pisani" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>Computational Graphic final project</title>
+    <title>Catilina Chair code</title>
   </head>
 
   <body>
@@ -19,15 +19,21 @@
           <h1 id="project_title">CG Final-project</h1>
           <h1 id="project_tagline">Matteo Pisani &nbsp 281744</h1>
 
-  <button name="Home" onclick="location.href='http://ft225.github.io/final-project/index.html'"><font size="4"> Home</font></button>
-
-        </header>
+  <section id="menu">
+        <button name="table" onclick="location.href='http://ft225.github.io/final-project/#catilina'"><font size="2.5"> Catilina chair</font></button>
+      <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#base-Quadra-Table'"><font size="2.5"> Base Quadra Table</font></button>
+       <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#lamp'"><font size="2.5"> Imbuto Lamp</font></button>
+      
+      <button name="armchair" onclick="location.href='http://ft225.github.io/final-project/#armchair'"><font size="2.5"> Sant Ambrogio armchair</font></button>  
+       </section>
+            </header>
     </div>
 
 <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="dominioni" class="anchor" href="#josef-hoffmann"><span class="octicon octicon-link"></span></a>Catilina chair</h1>
+          <p text-align="right">
+<a name="dominioni" class="anchor" href="#josef-hoffmann"><span class="octicon octicon-link"></span></a>Catilina chair javascript code </p></h1>
 <div class="row-fluid">
 <font size ="4">
   <pre>
@@ -53,91 +59,105 @@ function rgb01(r, g, b){
   return [r0, g0, b0, 1];
 }
 
-var domain = INTERVALS(1)(30)
-var dom2d = DOMAIN([[0,1],[0,1]])([30,30]);
-
-//punti base
-
-var base= COLOR(rgb01(47,51,53))(CUBOID([6,6,0.1]))
-
-var pointsb1= [[-1,-1,-1],[-0.25,-0.25,-0.5],[0,0,0]]
-var bez1 = BEZIER(S0)(pointsb1);
-var curveb1 = MAP(bez1)(domain);
-
-var pointsb2= [[5,-1,-1],[4.25,-0.25,-0.5],[4,0,0]]
-var bez2 = BEZIER(S0)(pointsb2);
-var curveb2 = MAP(bez2)(domain);
-
-var pointsb3= [[-1,5,-1],[-0.25,4.25,-0.5],[0,4,0]]
-var bez3 = BEZIER(S0)(pointsb3);
-var curveb3 = MAP(bez3)(domain);
-
-var pointsb4= [[5,5,-1],[4.25,4.25,-0.5],[4,4,0]]
-var bez4 = BEZIER(S0)(pointsb4);
-var curveb4 = MAP(bez4)(domain);
-
-var sur1 = BEZIER(S1)([bez1,bez2])
-var surface1 = MAP(sur1)(dom2d)
-
-var sur2 = BEZIER(S1)([bez1,bez3])
-var surface2 = MAP(sur2)(dom2d)
-
-var sur3 = BEZIER(S1)([bez3,bez4])
-var surface3 = MAP(sur3)(dom2d)
-
-var sur4 = BEZIER(S1)([bez2,bez4])
-var surface4 = MAP(sur4)(dom2d)
-
-//punti base sup
-var pointsb11= [[0,0,0],[1.5,1.5,2],[0,0,4]]
-var bez11 = BEZIER(S0)(pointsb11);
-var curveb11 = MAP(bez11)(domain);
-
-
-var pointsb12= [[4,0,0],[2.5,1.5,2],[4,0,4]]
-var bez12 = BEZIER(S0)(pointsb12);
-var curveb12 = MAP(bez12)(domain);
-
-var pointsb13= [[0,4,0],[1.5,2.5,2],[0,4,4]]
-var bez13 = BEZIER(S0)(pointsb13);
-var curveb13 = MAP(bez13)(domain);
-
-var pointsb14= [[4,4,0],[2.5,2.5,2],[4,4,4]]
-var bez14 = BEZIER(S0)(pointsb14);
-var curveb14 = MAP(bez14)(domain);
-
-var sur12 = BEZIER(S1)([bez11,bez12])
-var surface12 = MAP(sur12)(dom2d)
-
-var sur13 = BEZIER(S1)([bez11,bez13])
-var surface13 = MAP(sur13)(dom2d)
-
-var sur34 = BEZIER(S1)([bez13,bez14])
-var surface34 = MAP(sur34)(dom2d)
-
-var sur24 = BEZIER(S1)([bez12,bez14])
-var surface24 = MAP(sur24)(dom2d)
-
-var baseSup = STRUCT([surface12,surface24,surface34,surface13])
-var baseInf = STRUCT([surface1,surface2,surface3,surface4])
-
-var baseCompleta = STRUCT([COLOR(rgb01(198,198,197))(baseInf),COLOR(rgb01(47,51,53))(baseSup),T([0,1,2])([-1,-1,-1.1])(base)])
-
-// Parte superiore rotational
-
+var domain = INTERVALS(1)(50)
+var dom2d = DOMAIN([[0,1],[0,1]])([50,50]);
 var domainRot = DOMAIN([[0,1],[0,2*PI]])([50,50]);
 
-var profile = BEZIER(S0)([[0,0,4.2],[2.5,0,4.2],[5,0,4.2]]);
-var mapping = ROTATIONAL_SURFACE(profile);
-var surface = MAP(mapping)(domainRot);
-var coloredSurface = COLOR(rgb01(230,145,0))(surface)
+//base
 
-var profile2 = BEZIER(S0)([[5,0,4.2],[5.2,0,4.1],[5,0,4]]);
-var mapping2 = ROTATIONAL_SURFACE(profile2);
-var surfaceTor = MAP(mapping2)(domainRot);
-var parteSupCompleta =  STRUCT([COLOR(rgb01(47,51,53))(surfaceTor),coloredSurface])
+var points11= [[0,0,0],[-0.5,0.7,0],[0,1.9,0],[0.7,2.2,0],[1.3,2.2,0],[2,1.9,0],[2.5,0.7,0],[2,0,0]]
+var knots11 = generateKnot(points11)
+var nubs11 = NUBS(S0)(2)(knots11)(points11);
+var curve11 = MAP(nubs11)(domain);
 
-DRAW(STRUCT([T([0,1])([2,2])(parteSupCompleta),baseCompleta]))
+var points12= [[-0.1,-0.2,0],[-0.75,0.7,0],[-0.1,2.1,0],[0.7,2.4,0],[1.3,2.4,0],[2.1,2.1,0],[2.75,0.7,0],[2.1,-0.2,0]]
+var knots12 = generateKnot(points12)
+var nubs12 = NUBS(S0)(2)(knots12)(points12);
+var curve12 = MAP(nubs12)(domain);
+
+var points13= [[0,0,-0.1],[-0.5,0.7,-0.1],[0,1.9,-0.1],[0.7,2.2,-0.1],[1.3,2.2,-0.1],[2,1.9,-0.1],[2.5,0.7,-0.1],[2,0,-0.1]]
+var knots13 = generateKnot(points13)
+var nubs13 = NUBS(S0)(2)(knots13)(points13);
+var curve13 = MAP(nubs13)(domain);
+
+var points14= [[-0.1,-0.2,-0.1],[-0.75,0.7,-0.1],[-0.1,2.1,-0.1],[0.7,2.4,-0.1],[1.3,2.4,-0.1],[2.1,2.1,-0.1],[2.75,0.7,-0.1],[2.1,-0.2,-0.1]]
+var knots14 = generateKnot(points14)
+var nubs14 = NUBS(S0)(2)(knots14)(points14);
+var curve14 = MAP(nubs14)(domain);
+
+var points15= [[0,0,0],[-0.1,-0.2,0]]
+var knots15= generateKnot(points15)
+var nubs15 = NUBS(S0)(2)(knots15)(points15);
+var curve15 = MAP(nubs15)(domain);
+
+var points16= [[0,0,-0.1],[0,0,-0.1],[-0.1,-0.2,-0.1]]
+var knots16= generateKnot(points16)
+var nubs16 = NUBS(S0)(2)(knots16)(points16);
+var curve16 = MAP(nubs16)(domain);
+
+var points17= [[2,0,-0.1],[2,0,-0.1],[2.1,-0.2,-0.1]]
+var knots17= generateKnot(points17)
+var nubs17 = NUBS(S0)(2)(knots17)(points17);
+var curve17 = MAP(nubs17)(domain);
+
+var points18= [[2,0,0],[2,0,0],[2.1,-0.2,0]]
+var knots18= generateKnot(points18)
+var nubs18 = NUBS(S0)(2)(knots18)(points18);
+var curve18 = MAP(nubs18)(domain);
+
+var sur12 = BEZIER(S1)([nubs11,nubs12])
+var surface12 = MAP(sur12)(dom2d)
+
+var sur34 = BEZIER(S1)([nubs13,nubs14])
+var surface34 = MAP(sur34)(dom2d)
+
+var sur13 = BEZIER(S1)([nubs11,nubs13])
+var surface13 = MAP(sur13)(dom2d)
+
+var sur24 = BEZIER(S1)([nubs12,nubs14])
+var surface24 = MAP(sur24)(dom2d)
+
+var sur78 = BEZIER(S1)([nubs17,nubs18])
+var surface78 = MAP(sur78)(dom2d)
+
+var sur56 = BEZIER(S1)([nubs15,nubs16])
+var surface56 = MAP(sur56)(dom2d)
+
+//bar
+var base =COLOR([0,0,0])(STRUCT([surface12,surface13,surface34,surface24,surface78,surface56]))
+var bar =COLOR([0,0,0])(S([0,1])([0.5,0.5])(CYL_SURFACE([0.1,3.5])(20)))
+var hor_bar = COLOR([0,0,0])(R([0,2])(PI/2)(S([0,1])([0.5,0.5])(CYL_SURFACE([0.1,2.5])(20))))
+
+
+var puntiCuscino = [[0,0,0.9],[1,0,0.9],[1,0,0.5],[1,0,0.1],[0,0,0.1]]
+var knotsCuscino = generateKnot(puntiCuscino);
+var nubsCuscino = NUBS(S0)(2)(knotsCuscino)(puntiCuscino)
+var surCuscino = ROTATIONAL_SURFACE(nubsCuscino)
+var cuscino= COLOR(rgb01(106,18,30))(MAP(surCuscino)(domainRot))
+
+
+var profile1 = BEZIER(S0)([[2.2,0,1],[2.35,0,1],[2.5,0,0.75],[2.35,0,0.5],[2.2,0,0.5]]);
+var mapping1 = ROTATIONAL_SURFACE(profile1)
+var toro = S([0,1,2])([0.6,0.55,0.3])(COLOR([0,0,0])(MAP(mapping1)(domainRot)))
+
+//parte superiore
+
+var pointsup11 = [[-0.2,0,-0.15],[0,0,-0.15],[0,0,0],[-0.3,0.5,0],[0.6,0.8,0.3],[1.5,0.8,0.3],[2.3,0.5,0],[2,0,0],[2,0,-0.15],[2.2,0,-0.15]]
+var knotsup11 = generateKnot(pointsup11)
+var nubsup11 = NUBS(S0)(2)(knotsup11)(pointsup11);
+var curvesup11 = MAP(nubsup11)(domain);
+
+var pointsup12 = [[-0.2,0,-0.2],[-0.2,0,0],[-0.5,0.5,0],[0.6,0.8,0.5],[1.5,0.8,0.5],[2.5,0.5,0],[2.2,0,0],[2.2,0,-0.2]]
+var knotsup12 = generateKnot(pointsup12)
+var nubsup12 = NUBS(S0)(2)(knotsup12)(pointsup12);
+var curvesup12 = MAP(nubsup12)(domain);
+
+var surSup = BEZIER(S1)([nubsup11,nubsup12])
+var surfaceSup = S([0,1])([1.15,2.65])(COLOR([0,0,0])(MAP(surSup)(dom2d)))
+
+var model = STRUCT([S([2])([1.15])(T([0,1])([1,2.3])(bar)),T([0,1])([-0.3,0.3])(bar),T([0,1])([2.3,0.3])(bar),base,S([0,1])([1.45,1.35])(T([0,1,2])([0.7,0.7,1.8])(cuscino)),T([0,1,2])([1,1,1.7])(toro),T([0,1,2])([-0.25,0.3,1.8])(hor_bar),T([0,1,2])([-0.1,0.15,3.55])(surfaceSup)])
+
+DRAW(model)
   </pre>
 </font>
 </div>
@@ -146,8 +166,16 @@ DRAW(STRUCT([T([0,1])([2,2])(parteSupCompleta),baseCompleta]))
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Final-project maintained by <a href="https://github.com/stederob">stederob</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
+      <footer class="footer">
+      <hr>
+      <div class="container">
+        
+        <font>Matteo Pisani | MAT.281744 | CG Final Project 2013</font>
+        <br>
+        <p text-align="right">
+           <button name="Home" onclick="location.href='http://ft225.github.io/final-project/index.html'"><font size="2.5"> Home</font></button>
+
+        </p>
+      </div>
+    </footer>
     </div>
