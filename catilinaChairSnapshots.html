@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Final-project : Matteo Pisani" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+
+    <title>Final-project</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+    <a id="forkme_banner" href="https://github.com/ft225/final-project">View on GitHub</a>
+          <h1 id="project_title">CG Final-project</h1>
+          <h1 id="project_tagline">Matteo Pisani &nbsp 281744</h1>
+
+      <section id="menu">
+        <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#base-Quadra-Table'"><font size="2.5"> Base Quadra Table</font></button>
+
+        <button name="lamp" onclick="location.href='http://ft225.github.io/final-project/#lamp'"><font size="2.5"> Imbuto Lamp</font></button>
+
+        <button name="girevoletable" onclick="location.href='http://ft225.github.io/final-project/#girevole'"><font size="2.5"> Girevole table</font></button>
+
+        <button name="table" onclick="location.href='http://ft225.github.io/final-project/#catilina'"><font size="2.5"> Catilina chair</font></button>
+      
+      <button name="Abrogioarmchair" onclick="location.href='http://ft225.github.io/final-project/#armchair'"><font size="2.5"> Sant Ambrogio armchair</font></button> 
+      <button name="Toroarmchair" onclick="location.href='http://ft225.github.io/final-project/#toroarmchair'"><font size="2.5"> Toro armchair</font></button>  
+       </section>
+        </header>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="dominioni" class="anchor" href="#dominioni"><span class="octicon octicon-link"></span></a>Catilina chair by Luigi Caccia Dominioni</h1>
+<div class="row-fluid">
+<font size ="4">
+<p align="justify">
+
+<p><img src="snapshots/catilinaChair/poggiaSchiena.png" alt="base" style="width:300px; heigth:300px;" align="right"></p>
+Catilina chair has four main components: the headrest, the base, the pillow and the support under it.
+The first component was probably the hardest to realize because of its complexity. The complexity is given by the distance between the two NUBS; infact to give the model a sort of reality the distance has to remain almost the same in all its parts, but the lots of concavity do not make it easy to realize.
+<pre>
+var pointsup11 = [[-0.2,0,-0.15],[0,0,-0.15],[0,0,0],[-0.3,0.5,0],[0.6,0.8,0.3],[1.5,0.8,0.3],[2.3,0.5,0],[2,0,0],[2,0,-0.15],[2.2,0,-0.15]]
+var knotsup11 = generateKnot(pointsup11)
+var nubsup11 = NUBS(S0)(2)(knotsup11)(pointsup11);
+var curvesup11 = MAP(nubsup11)(domain);
+
+var pointsup12 = [[-0.2,0,-0.2],[-0.2,0,0],[-0.5,0.5,0],[0.6,0.8,0.5],[1.5,0.8,0.5],[2.5,0.5,0],[2.2,0,0],[2.2,0,-0.2]]
+var knotsup12 = generateKnot(pointsup12)
+var nubsup12 = NUBS(S0)(2)(knotsup12)(pointsup12);
+var curvesup12 = MAP(nubsup12)(domain);
+
+var surSup = BEZIER(S1)([nubsup11,nubsup12])
+var surfaceSup = S([0,1])([1.15,2.65])(COLOR([0,0,0])(MAP(surSup)(dom2d)))
+
+</pre>
+<p><img src="snapshots/catilinaChair/baseSgabello.png" alt="base" style="width:300px; heigth:300px;" align="right"></p>
+The base was difficult to realize because of its precise corners and so I had to make a lot of NUBS to realize it.
+Finally it was easy to use BEZIER, choosing between the realized NUBS. 
+<pre>
+var points11= [[0,0,0],[-0.5,0.7,0],[0,1.9,0],[0.7,2.2,0],[1.3,2.2,0],[2,1.9,0],[2.5,0.7,0],[2,0,0]]
+var knots11 = generateKnot(points11)
+var nubs11 = NUBS(S0)(2)(knots11)(points11);
+var curve11 = MAP(nubs11)(domain);
+
+var points12= [[-0.1,-0.2,0],[-0.75,0.7,0],[-0.1,2.1,0],[0.7,2.4,0],[1.3,2.4,0],[2.1,2.1,0],[2.75,0.7,0],[2.1,-0.2,0]]
+var knots12 = generateKnot(points12)
+var nubs12 = NUBS(S0)(2)(knots12)(points12);
+var curve12 = MAP(nubs12)(domain);
+
+var points13= [[0,0,-0.1],[-0.5,0.7,-0.1],[0,1.9,-0.1],[0.7,2.2,-0.1],[1.3,2.2,-0.1],[2,1.9,-0.1],[2.5,0.7,-0.1],[2,0,-0.1]]
+var knots13 = generateKnot(points13)
+var nubs13 = NUBS(S0)(2)(knots13)(points13);
+var curve13 = MAP(nubs13)(domain);
+
+var points14= [[-0.1,-0.2,-0.1],[-0.75,0.7,-0.1],[-0.1,2.1,-0.1],[0.7,2.4,-0.1],[1.3,2.4,-0.1],[2.1,2.1,-0.1],[2.75,0.7,-0.1],[2.1,-0.2,-0.1]]
+var knots14 = generateKnot(points14)
+var nubs14 = NUBS(S0)(2)(knots14)(points14);
+var curve14 = MAP(nubs14)(domain);
+
+var points15= [[0,0,0],[-0.1,-0.2,0]]
+var knots15= generateKnot(points15)
+var nubs15 = NUBS(S0)(2)(knots15)(points15);
+var curve15 = MAP(nubs15)(domain);
+
+var points16= [[0,0,-0.1],[0,0,-0.1],[-0.1,-0.2,-0.1]]
+var knots16= generateKnot(points16)
+var nubs16 = NUBS(S0)(2)(knots16)(points16);
+var curve16 = MAP(nubs16)(domain);
+
+var points17= [[2,0,-0.1],[2,0,-0.1],[2.1,-0.2,-0.1]]
+var knots17= generateKnot(points17)
+var nubs17 = NUBS(S0)(2)(knots17)(points17);
+var curve17 = MAP(nubs17)(domain);
+
+var points18= [[2,0,0],[2,0,0],[2.1,-0.2,0]]
+var knots18= generateKnot(points18)
+var nubs18 = NUBS(S0)(2)(knots18)(points18);
+var curve18 = MAP(nubs18)(domain);
+
+var sur12 = BEZIER(S1)([nubs11,nubs12])
+var surface12 = MAP(sur12)(dom2d)
+
+var sur34 = BEZIER(S1)([nubs13,nubs14])
+var surface34 = MAP(sur34)(dom2d)
+
+var sur13 = BEZIER(S1)([nubs11,nubs13])
+var surface13 = MAP(sur13)(dom2d)
+
+var sur24 = BEZIER(S1)([nubs12,nubs14])
+var surface24 = MAP(sur24)(dom2d)
+
+var sur78 = BEZIER(S1)([nubs17,nubs18])
+var surface78 = MAP(sur78)(dom2d)
+
+var sur56 = BEZIER(S1)([nubs15,nubs16])
+var surface56 = MAP(sur56)(dom2d)
+
+var base =COLOR([0,0,0])(STRUCT([surface12,surface13,surface34,surface24,surface78,surface56]))
+</pre>
+<br>
+<br>
+<p><img src="snapshots/catilinaChair/poggiaCuscino.png" alt="base" style="width:300px; heigth:300px;" align="right"></p>
+This component it's a simple thorus realized with BEZIER (at this time the selector passed is S0 instead of S1) and ROTATIONAL_SUFACE plasm functions.
+<br><br><br><br>
+<pre>
+var profile1 = BEZIER(S0)([[2.2,0,1],[2.35,0,1],[2.5,0,0.75],[2.35,0,0.5],[2.2,0,0.5]]);
+var mapping1 = ROTATIONAL_SURFACE(profile1)
+var toro = S([0,1,2])([0.6,0.55,0.3])(COLOR([0,0,0])(MAP(mapping1)(domainRot)))
+
+</pre>
+<br><br>
+<p><img src="snapshots/catilinaChair/cuscino.png" alt="rot" style="width:200px; heigth:200px;" align="left">
+The last component is the comfortable red pillow realized with NUBS and ROTATIONAL_SURFACE.
+I used NUBS instead of BEZIER because of the precise roundness of the model and this solution has given good results 
+</p>
+
+<pre>
+var puntiCuscino = [[0,0,0.9],[1,0,0.9],[1,0,0.5],[1,0,0.1],[0,0,0.1]]
+var knotsCuscino = generateKnot(puntiCuscino);
+var nubsCuscino = NUBS(S0)(2)(knotsCuscino)(puntiCuscino)
+var surCuscino = ROTATIONAL_SURFACE(nubsCuscino)
+var cuscino= COLOR(rgb01(106,18,30))(MAP(surCuscino)(domainRot))
+
+</pre>
+<br>
+<br>
+<div align="center">
+<h2> Catilina chair original model</h2>
+<figure>
+<p><img src="images/Catilina_Chair.jpg" style="width:300px; heigth:300px;">
+    <figcaption>
+        <p>Results obtained in Javascript and Pyplasm</p>
+    </figcaption>
+</figure>
+</div>
+
+
+<p><img src="snapshots/completi/catilinaChair(js).png" style="width:270px; heigth:270px;" align="left">
+
+<img src="snapshots/completi/catilinaChair(py).png" alt="dominioni" style="width:300px; heigth:300px;"></p>
+</br>
+
+</div>
+  
+</div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="footer">
+      <hr>
+      <div class="container">
+        
+        <font>Matteo Pisani | MAT.281744 | CG Final Project 2013</font>
+        <br>
+        <p text-align="right">
+           <button name="Home" onclick="location.href='http://ft225.github.io/final-project/index.html'"><font size="2.5"> Home</font></button>
+
+        </p>
+      </div>
+    </footer>
+    </div>
+    
+
+  </body>
+</html>

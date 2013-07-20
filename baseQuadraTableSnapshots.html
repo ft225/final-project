@@ -7,7 +7,9 @@
     <meta name="description" content="Final-project : Matteo Pisani" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>Base quadra table code</title>
+
+
+    <title>Final-project</title>
   </head>
 
   <body>
@@ -19,7 +21,7 @@
           <h1 id="project_title">CG Final-project</h1>
           <h1 id="project_tagline">Matteo Pisani &nbsp 281744</h1>
 
-  <section id="menu">
+      <section id="menu">
         <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#base-Quadra-Table'"><font size="2.5"> Base Quadra Table</font></button>
 
         <button name="lamp" onclick="location.href='http://ft225.github.io/final-project/#lamp'"><font size="2.5"> Imbuto Lamp</font></button>
@@ -33,26 +35,19 @@
        </section>
         </header>
     </div>
-
-<div id="main_content_wrap" class="outer">
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="dominioni" class="anchor" href="#dominioni"><span class="octicon octicon-link"></span></a>Base quadra table javascript code</h1>
+<a name="dominioni" class="anchor" href="#dominioni"><span class="octicon octicon-link"></span></a>Base quadra table by Luigi Caccia Dominioni</h1>
 <div class="row-fluid">
 <font size ="4">
-  <pre>
-  function rgb01(r, g, b){
-  var r0 = r/255.0;
-  var g0 = g/255.0;
-  var b0 = b/255.0;
-  return [r0, g0, b0, 1];
-}
+<p align="justify">
+<p><img src="snapshots/baseQuadra/base.png" alt="base" style="width:300px; heigth:300px;" align="right"></p>
+Girevole table is composed by two main components: the base of the table and the oval top floor.
+The draw the complete base, I realized a lot of curves (because of different colors I had to realize separated the black base and the white one) with BEZIER(S0) function, then mapped with the 3d domain thanks to the BEZIER(S1) function.
 
-var domain = INTERVALS(1)(30)
-var dom2d = DOMAIN([[0,1],[0,1]])([30,30]);
-
-//punti base
-
+<pre>
 var base= COLOR(rgb01(47,51,53))(CUBOID([6,6,0.1]))
 
 var pointsb1= [[-1,-1,-1],[-0.25,-0.25,-0.5],[0,0,0]]
@@ -118,25 +113,45 @@ var baseInf = STRUCT([surface1,surface2,surface3,surface4])
 
 var baseCompleta = STRUCT([COLOR(rgb01(198,198,197))(baseInf),COLOR(rgb01(47,51,53))(baseSup),T([0,1,2])([-1,-1,-1.1])(base)])
 
-// Parte superiore rotational
+</pre>
+<br>
+<p><img src="snapshots/baseQuadra/top.png" alt="rot" style="width:200px; heigth:200px;" align="left">
+The second main component is the top oval yellow floor which is realized by two rotational surfaces, one to draw the grey thorus around the top and one to draw the yellow floor. Obviously I mapped this surfaces with a specific "rotational domain" to obtain this result.</p>
 
+<pre>
 var domainRot = DOMAIN([[0,1],[0,2*PI]])([50,50]);
 
 var profile = BEZIER(S0)([[0,0,4.2],[2.5,0,4.2],[5,0,4.2]]);
 var mapping = ROTATIONAL_SURFACE(profile);
 var surface = MAP(mapping)(domainRot);
 var coloredSurface = COLOR(rgb01(230,145,0))(surface)
-
 var profile2 = BEZIER(S0)([[5,0,4.2],[5.2,0,4.1],[5,0,4]]);
 var mapping2 = ROTATIONAL_SURFACE(profile2);
 var surfaceTor = MAP(mapping2)(domainRot);
 var parteSupCompleta =  STRUCT([COLOR(rgb01(47,51,53))(surfaceTor),coloredSurface])
-var model = STRUCT([T([0,1])([2,2])(parteSupCompleta),baseCompleta])
-
-DRAW(model)
-  </pre>
-</font>
+</pre>
+<br>
+<br>
+<div align="center">
+<h2> Base quadra table original model</h2>
+<figure>
+<p><img src="images/baseQuadraTable.jpg" style="width:300px; heigth:300px;">
+    <figcaption>
+        <p>Results obtained in Javascript and Pyplasm</p>
+    </figcaption>
+</figure>
 </div>
+
+
+<p><img src="snapshots/completi/baseQuadraTable(js).png" style="width:270px; heigth:270px;" align="left">
+
+<img src="snapshots/completi/baseQuadraTable(py).png" alt="dominioni" style="width:300px; heigth:300px;"></p>
+</br>
+
+</div>
+  
+</div>
+
       </section>
     </div>
 
@@ -155,3 +170,7 @@ DRAW(model)
       </div>
     </footer>
     </div>
+    
+
+  </body>
+</html>

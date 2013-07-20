@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Final-project : Matteo Pisani" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+
+    <title>Final-project</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+    <a id="forkme_banner" href="https://github.com/ft225/final-project">View on GitHub</a>
+          <h1 id="project_title">CG Final-project</h1>
+          <h1 id="project_tagline">Matteo Pisani &nbsp 281744</h1>
+
+      <section id="menu">
+        <button name="catilina" onclick="location.href='http://ft225.github.io/final-project/#base-Quadra-Table'"><font size="2.5"> Base Quadra Table</font></button>
+
+        <button name="lamp" onclick="location.href='http://ft225.github.io/final-project/#lamp'"><font size="2.5"> Imbuto Lamp</font></button>
+
+        <button name="girevoletable" onclick="location.href='http://ft225.github.io/final-project/#girevole'"><font size="2.5"> Girevole table</font></button>
+
+        <button name="table" onclick="location.href='http://ft225.github.io/final-project/#catilina'"><font size="2.5"> Catilina chair</font></button>
+      
+      <button name="Abrogioarmchair" onclick="location.href='http://ft225.github.io/final-project/#armchair'"><font size="2.5"> Sant Ambrogio armchair</font></button> 
+      <button name="Toroarmchair" onclick="location.href='http://ft225.github.io/final-project/#toroarmchair'"><font size="2.5"> Toro armchair</font></button>  
+       </section>
+        </header>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="dominioni" class="anchor" href="#dominioni"><span class="octicon octicon-link"></span></a>Girevole table by Luigi Caccia Dominioni</h1>
+<div class="row-fluid">
+<font size ="4">
+<p align="justify">
+<p><img src="snapshots/girevoleTable/semiluna.png" alt="semi" style="width:300px; heigth:300px;" align="right"></p>
+Girevole table is composed by two main components: the three halfmoon floors and the rotational joints between the floors.
+To build the floors I have generated two NUBS among which I've called the BEZIER(S1) function that draws the surface between them.
+Then the 2th and the 3rd floors have been rotated to show the potentiality of this table.
+
+<pre>
+var points11= [[0,0,0],[-0.3,0.7,0],[0,1.9,0],[0.7,2.2,0],[1.3,2.2,0],[2,1.9,0],[2.3,0.75,0],[2,0,0],[2,0,0],[2,0,0],[0.9,0.7,0],[0,0,0]]
+var knots11 = generateKnot(points11)
+var nubs11 = NUBS(S0)(2)(knots11)(points11);
+var curve11 = MAP(nubs11)(domain);
+
+var points12= [[0,0,0.5],[-0.3,0.7,0.5],[0,1.9,0.5],[0.7,2.2,0.5],[1.3,2.2,0.5],[2,1.9,0.5],[2.3,0.75,0.5],[2,0,0.5],[2,0,0.5],[2,0,0.5],[0.9,0.7,0.5],[0,0,0.5]]
+var knots12 = generateKnot(points12)
+var nubs12 = NUBS(S0)(2)(knots12)(points12);
+var curve12 = MAP(nubs12)(domain);
+
+var surf1 = BEZIER(S1)([nubs11,[1,1,0]])
+var surface1 = MAP(surf1)(dom2d)
+var surf2 = BEZIER(S1)([nubs12,[1,1,0.5]])
+var surface2 = MAP(surf2)(dom2d)
+var surf12 = BEZIER(S1)([nubs11,nubs12])
+var surface12 = MAP(surf12)(dom2d)
+
+var semiluna = S([0,1])([3.5,3.2])(STRUCT([surface12,surface2,surface1]))
+</pre>
+<br>
+<p><img src="snapshots/girevoleTable/rotatore.png" alt="rot" style="width:200px; heigth:200px;" align="left">
+The second main component is the joint which is a simple DISK extruded and the scaled on the ordinate axis to give it the seems of an ellipse.</p>
+
+<pre>
+var ellisse = S([0])([1.5])(DISK()())
+var rotator = T([0,1])([3.8,4])(EXTRUDE([1])(ellisse))
+</pre>
+<br>
+<br>
+<div align="center">
+<h2> Girevole table original model</h2>
+<figure>
+<p><img src="images/girevoleTable.jpg" style="width:300px; heigth:300px;">
+    <figcaption>
+        <p>Results obtained in Javascript and Pyplasm</p>
+    </figcaption>
+</figure>
+</div>
+
+
+<p><img src="snapshots/completi/girevoleTable(js).png" style="width:270px; heigth:270px;" align="left">
+
+<img src="snapshots/completi/girevoleTable(py).png" alt="dominioni" style="width:300px; heigth:300px;"></p>
+</br>
+
+</div>
+  
+</div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="footer">
+      <hr>
+      <div class="container">
+        
+        <font>Matteo Pisani | MAT.281744 | CG Final Project 2013</font>
+        <br>
+        <p text-align="right">
+           <button name="Home" onclick="location.href='http://ft225.github.io/final-project/index.html'"><font size="2.5"> Home</font></button>
+
+        </p>
+      </div>
+    </footer>
+    </div>
+    
+
+  </body>
+</html>
